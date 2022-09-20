@@ -3,6 +3,7 @@ package com.ironsource.action_button.di
 import android.app.Application
 import com.ironsource.action_button.App
 import com.ironsource.action_button.di.binds.AppBinds
+import com.ironsource.action_button.di.module.HelpersModule
 import com.ironsource.action_button.di.module.RepositoryModule
 import com.ironsource.action_button.di.module.UseCaseModule
 import com.ironsource.domain.usecase.GetActionUseCase
@@ -16,6 +17,7 @@ import javax.inject.Singleton
     modules = [
         UseCaseModule::class,
         RepositoryModule::class,
+        HelpersModule::class,
 
         AppBinds::class
     ]

@@ -1,8 +1,8 @@
 package com.ironsource.domain.repository
 
-import com.ironsource.domain.model.Action
+import com.ironsource.domain.model.ActionsContainer
 
 interface ActionRepository {
 
-    fun getActions(): List<Action>
+    fun getActions(): ActionsContainer
 }

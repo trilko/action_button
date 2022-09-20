@@ -19,7 +19,8 @@ class WelcomeViewModel(
     fun obtainEvent(event: WelcomeEvent) {
         when (event) {
             is WelcomeEvent.OnClickActionButton -> {
-                getActionUseCase.invoke()
+                val result = getActionUseCase.invoke()
+                val currentTime = System.currentTimeMillis()
             }
         }
     }

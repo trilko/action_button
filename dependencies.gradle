@@ -32,6 +32,7 @@ ext.versions = [
         lifecycle          : '2.3.0',
 
         timber             : '4.7.1',
+        preferenceKtx       : '1.1.1',
 ]
 
 ext.gradlePlugins = [
@@ -69,6 +70,8 @@ ext.libraries = [
         lifecycleViewmodelSavedstate: "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle",
         lifecycleCommonJava8        : "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle",
         lifecycleReactivestreamsKtx : "androidx.lifecycle:lifecycle-reactivestreams-ktx:$versions.lifecycle",
+
+        preferenceKtx               : "androidx.preference:preference-ktx:$versions.preferenceKtx",
 
         timber                      : "com.jakewharton.timber:timber:$versions.timber",
 ]
