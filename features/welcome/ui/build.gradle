@@ -1,12 +1,11 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    namespace 'com.ironsource.action_button'
+    namespace 'com.ironsource.ui'
     compileSdkVersion versions.compileSdk
     defaultConfig {
-        applicationId "com.ironsource.action_button"
         minSdk versions.minSdk
         targetSdk targetSdk
         versionCode versions.code
@@ -18,22 +17,20 @@ android {
         sourceCompatibility versions.javaVersion
         targetCompatibility versions.javaVersion
     }
+    buildFeatures {
+        viewBinding true
+    }
     kotlinOptions {
         jvmTarget = versions.jvmTarget
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
-
-    implementation project(':features:welcome:ui')
-    implementation project(':features:welcome:domain')
-    implementation project(':features:welcome:data')
 
     implementation libraries.kotlinStdlib
 
@@ -51,11 +48,6 @@ dependencies {
     implementation libraries.daggerAndroid
     kapt libraries.daggerAndroidProcessor
     kapt libraries.daggerCompiler
-
-    implementation libraries.retrofit
-    implementation libraries.converterGson
-    implementation libraries.loggingInterceptor
-    implementation libraries.okHttp3
 
     implementation libraries.lifecycleViewmodelKtx
     implementation libraries.lifecycleLivedataKtx
