@@ -41,4 +41,5 @@ sealed class GetActionUseCaseResult {
 
 sealed class GetActionError {
     object NoActions : GetActionError()
+    object NoTypeRecognized: GetActionError()
 }

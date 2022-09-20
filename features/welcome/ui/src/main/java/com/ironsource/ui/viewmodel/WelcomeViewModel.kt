@@ -1,12 +1,14 @@
 package com.ironsource.ui.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import com.ironsource.domain.model.Action
+import com.ironsource.domain.usecase.GetActionError
 import com.ironsource.domain.usecase.GetActionUseCase
+import com.ironsource.domain.usecase.GetActionUseCaseResult
 import com.ironsource.ui.mvi.WelcomeEvent
 import com.ironsource.ui.mvi.WelcomeState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class WelcomeViewModel(
@@ -17,11 +19,30 @@ class WelcomeViewModel(
     val stateLiveData: LiveData<WelcomeState> = _stateLiveData
 
     fun obtainEvent(event: WelcomeEvent) {
-        when (event) {
-            is WelcomeEvent.OnClickActionButton -> {
-                val result = getActionUseCase.invoke()
-                val currentTime = System.currentTimeMillis()
+        viewModelScope.launch(Dispatchers.IO) {
+            when (event) {
+                is WelcomeEvent.OnClickActionButton -> {
+                    _stateLiveData.postValue(WelcomeState.Loading)
+                    when (val result = getActionUseCase.invoke()) {
+                        is GetActionUseCaseResult.Success -> {
+                            _stateLiveData.postValue(result.action.mapToWelcomeState())
+                        }
+                        is GetActionUseCaseResult.Error -> {
+                            _stateLiveData.postValue(WelcomeState.Error(result.error))
+                        }
+                    }
+                }
             }
+        }
+    }
+
+    private fun Action.mapToWelcomeState(): WelcomeState {
+        return when (this.type) {
+            "animation" -> WelcomeState.Animation
+            "toast" -> WelcomeState.Toast
+            "call" -> WelcomeState.Call
+            "notification" -> WelcomeState.Notification
+            else -> WelcomeState.Error(GetActionError.NoTypeRecognized)
         }
     }
 }
