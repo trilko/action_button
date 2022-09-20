@@ -31,6 +31,8 @@ android {
 }
 
 dependencies {
+    implementation project(':features:welcome:domain')
+    implementation project(':features:welcome:data')
 
     implementation libraries.kotlinStdlib
 
