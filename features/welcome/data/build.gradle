@@ -28,6 +28,8 @@ android {
 }
 
 dependencies {
+    implementation project(':features:welcome:domain')
+
     implementation libraries.kotlinStdlib
 
     implementation libraries.appcompat
