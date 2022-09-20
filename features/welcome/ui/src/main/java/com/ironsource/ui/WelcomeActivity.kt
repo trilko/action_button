@@ -55,9 +55,6 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun render(state: WelcomeState) {
         when (state) {
-            is WelcomeState.Loading -> {
-                //TODO: show loading
-            }
             is WelcomeState.Error -> {
                 Toast.makeText(this, state.error.getErrorMessage(), Toast.LENGTH_SHORT).show()
             }

@@ -22,7 +22,6 @@ class WelcomeViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             when (event) {
                 is WelcomeEvent.OnClickActionButton -> {
-                    _stateLiveData.postValue(WelcomeState.Loading)
                     when (val result = getActionUseCase.invoke()) {
                         is GetActionUseCaseResult.Success -> {
                             _stateLiveData.postValue(result.action.mapToWelcomeState())
