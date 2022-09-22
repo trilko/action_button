@@ -1,16 +1,6 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-rootProject.name = "Action button"
 include ':app'
+
+include ':features:welcome'
+include ':features:welcome:ui'
+include ':features:welcome:domain'
+include ':features:welcome:data'

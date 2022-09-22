@@ -1,12 +1,11 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    namespace 'com.ironsource.action_button'
+    namespace 'com.ironsource.data'
     compileSdkVersion versions.compileSdk
     defaultConfig {
-        applicationId "com.ironsource.action_button"
         minSdk versions.minSdk
         targetSdk targetSdk
         versionCode versions.code
@@ -24,16 +23,12 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
-
-    implementation project(':features:welcome:ui')
     implementation project(':features:welcome:domain')
-    implementation project(':features:welcome:data')
 
     implementation libraries.kotlinStdlib
 
@@ -45,7 +40,6 @@ dependencies {
     implementation libraries.coroutines
 
     testImplementation libraries.junit
-    androidTestImplementation libraries.mockito
 
     implementation libraries.dagger
     implementation libraries.daggerAndroid
@@ -56,13 +50,6 @@ dependencies {
     implementation libraries.converterGson
     implementation libraries.loggingInterceptor
     implementation libraries.okHttp3
-
-    implementation libraries.lifecycleViewmodelKtx
-    implementation libraries.lifecycleLivedataKtx
-    implementation libraries.lifecycleRuntimeKtx
-    implementation libraries.lifecycleViewmodelSavedstate
-    kapt libraries.lifecycleCommonJava8
-    implementation libraries.lifecycleReactivestreamsKtx
 
     implementation libraries.timber
 }

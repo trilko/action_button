@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_name">Action</string>
+
+    <string name="no_actions_error">No Actions to do</string>
+    <string name="no_type_recognized">Action type doesn\'t recognized</string>
+    <string name="no_contact_error">Can\'t call to contact</string>
+</resources>
